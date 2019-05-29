@@ -18,9 +18,9 @@ def mediaform(request,media=None):
         form=MediaForm(request.POST, request.FILES, instance=media)
         if form.is_valid():
             media = form.save(commit=False)
-            media.title = form.cleaned_data['title']
-            media.image = form.cleaned_data['image']
-            media.description=form.cleaned_data['description']
+        #     media.title = form.cleaned_data['title']
+        #     media.image = form.cleaned_data['image']
+        #     media.description=form.cleaned_data['description']
             media.save()
             return redirect('media_app:index')
     else:
