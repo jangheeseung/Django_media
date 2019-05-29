@@ -1,19 +1,22 @@
+{%extends 'media_app/home.html'%}
 {% load staticfiles %}
-<a class="nav-item nav-link" href="{% url 'mediaform' %}">글쓰기</a>
-<div class="album py-5 bg-light">
-    <div class="container">
-        <div class="row">
-        {% for media in medias.all %}
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-              <img class="card-img-top" src="{{ media.image.url }}" alt=" Card image cap">
-              <div class="card-body">
-                <h4>{{ media.title }}</h4>
-                <p class="card-text">{{ media.description }}</p>
-              </div>
+
+{% block content %}
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                {% for media in medias.all %}
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="{{ media.image.url }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ media.title }}</h5>
+                            <p class="card-text">{{ media.description }}</p>
+                            <a href="{%url 'media_app:edit' pk=media.pk %}" class="btn btn-primary">수정</a>
+                            <a href="{%url 'media_app:remove' pk=media.pk %}" class="btn btn-primary">삭제</a>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-          </div>
-      {% endfor %}
-      </div>
+        </div>
     </div>
-  </div>
+{% endblock %}
